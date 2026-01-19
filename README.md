@@ -51,5 +51,3 @@ To run this project locally, follow these simple steps:
 
 *(Placeholder for screenshots of the homepage, login form, and product search page)*
 
----
-*Developed by Manus AI for a final assignment.*
