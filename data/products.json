@@ -46,5 +46,53 @@
         "price": 129.99,
         "description": "Tactile mechanical switches for the best typing experience.",
         "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "id": 7,
+        "name": "Portable SSD 1TB",
+        "category": "Storage",
+        "price": 149.99,
+        "description": "Fast and reliable external storage solution.",
+        "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "id": 8,
+        "name": "USB-C Hub Multi-Port",
+        "category": "Accessories",
+        "price": 49.99,
+        "description": "Connect multiple devices with this versatile hub.",
+        "image": "https://images.unsplash.com/photo-1625948515291-69613efd103f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "id": 9,
+        "name": "Wireless Charger Pad",
+        "category": "Accessories",
+        "price": 39.99,
+        "description": "Convenient wireless charging for your devices.",
+        "image": "https://images.unsplash.com/photo-1603674554159-b62f6febbce5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+        "id": 10,
+        "name": "Monitor 27\" 4K",
+        "category": "Displays",
+        "price": 449.99,
+        "description": "Stunning 4K display for professionals and gamers.",
+        "image": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=80&w=1177&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+        "id": 11,
+        "name": "Webcam HD 1080p",
+        "category": "Accessories",
+        "price": 79.99,
+        "description": "Crystal clear video for streaming and conferencing.",
+        "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "id": 12,
+        "name": "Laptop Stand Adjustable",
+        "category": "Accessories",
+        "price": 34.99,
+        "description": "Ergonomic stand for improved posture and comfort.",
+        "image": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
     }
 ]
