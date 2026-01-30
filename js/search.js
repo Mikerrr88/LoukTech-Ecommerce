@@ -1,11 +1,15 @@
 // Product Search and Filtering Logic
 
 let allProducts = [];
+let currentCategory = 'all';
+let currentSort = 'default';
 
 document.addEventListener('DOMContentLoaded', () => {
     const productsGrid = document.getElementById('productsGrid');
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const sortSelect = document.getElementById('sortSelect');
 
     // Fetch products from JSON
     fetch('data/products.json')
@@ -35,7 +39,78 @@ document.addEventListener('DOMContentLoaded', () => {
             filterProducts(searchInput.value);
         });
     }
+
+    // Category filtering
+    if (categoryButtons) {
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Get category and filter
+                currentCategory = btn.dataset.category;
+                updateCategoryTitle(currentCategory);
+                applyFiltersAndSort();
+            });
+        });
+    }
+
+    // Sorting
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            applyFiltersAndSort();
+        });
+    }
 });
+
+function applyFiltersAndSort() {
+    let filtered = allProducts;
+
+    // Apply category filter
+    if (currentCategory !== 'all') {
+        filtered = filtered.filter(product => product.category === currentCategory);
+    }
+
+    // Apply search filter if search input has value
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim()) {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        filtered = filtered.filter(product => 
+            product.name.toLowerCase().includes(searchTerm) || 
+            product.category.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm)
+        );
+    }
+
+    // Apply sorting
+    filtered = sortProducts(filtered, currentSort);
+
+    displayProducts(filtered);
+}
+
+function sortProducts(products, sortType) {
+    const sorted = [...products];
+
+    switch(sortType) {
+        case 'price-low':
+            return sorted.sort((a, b) => a.price - b.price);
+        case 'price-high':
+            return sorted.sort((a, b) => b.price - a.price);
+        case 'name':
+            return sorted.sort((a, b) => a.name.localeCompare(b.name));
+        default:
+            return sorted;
+    }
+}
+
+function updateCategoryTitle(category) {
+    const categoryTitle = document.getElementById('categoryTitle');
+    if (categoryTitle) {
+        categoryTitle.textContent = category === 'all' ? 'All Products' : category;
+    }
+}
 
 function displayProducts(products) {
     const productsGrid = document.getElementById('productsGrid');
@@ -62,11 +137,25 @@ function displayProducts(products) {
 
 function filterProducts(query) {
     const searchTerm = query.toLowerCase().trim();
-    const filtered = allProducts.filter(product => 
-        product.name.toLowerCase().includes(searchTerm) || 
-        product.category.toLowerCase().includes(searchTerm) ||
-        product.description.toLowerCase().includes(searchTerm)
-    );
+    let filtered = allProducts;
+
+    // Apply category filter
+    if (currentCategory !== 'all') {
+        filtered = filtered.filter(product => product.category === currentCategory);
+    }
+
+    // Apply search filter
+    if (searchTerm) {
+        filtered = filtered.filter(product => 
+            product.name.toLowerCase().includes(searchTerm) || 
+            product.category.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm)
+        );
+    }
+
+    // Apply sorting
+    filtered = sortProducts(filtered, currentSort);
+
     displayProducts(filtered);
 }
 
@@ -79,5 +168,7 @@ function addToCart(productId) {
     }
     
     const product = allProducts.find(p => p.id === productId);
-    alert(`Added ${product.name} to your cart!`);
+    if (product) {
+        cart.addItem(product);
+    }
 }
